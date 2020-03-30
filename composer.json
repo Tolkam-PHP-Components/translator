@@ -1,0 +1,21 @@
+{
+    "name": "tolkam/translator",
+    "description": "Translates message codes into human readable strings",
+    "type": "library",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Tolkam\\Translator\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=7.4",
+        "ext-mbstring": "*",
+        "tolkam/utils": "^1.0@dev"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
