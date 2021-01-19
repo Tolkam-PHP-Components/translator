@@ -9,6 +9,15 @@ interface TranslatorInterface
     public const SEP_FORM  = ',';
     
     /**
+     * Sets the language code to use
+     *
+     * @param string $lang
+     *
+     * @return self
+     */
+    public function useLanguage(string $lang): self;
+    
+    /**
      * Gets message by it's code
      *
      * @param string $code

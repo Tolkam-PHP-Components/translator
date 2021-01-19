@@ -62,13 +62,9 @@ class Translator implements TranslatorInterface
     }
     
     /**
-     * Sets the language code
-     *
-     * @param string $lang
-     *
-     * @return self
+     * @inheritDoc
      */
-    public function setLanguage(string $lang): self
+    public function useLanguage(string $lang): self
     {
         if (mb_strlen($lang) !== 2) {
             throw new TranslatorException('Language code must be 2 characters string');
