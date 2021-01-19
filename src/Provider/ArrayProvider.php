@@ -15,7 +15,7 @@ class ArrayProvider implements LanguageProviderInterface
      * Whether to fallback to previous nesting level segment
      * @var bool
      */
-    protected bool $fallback;
+    protected bool $fallbackToPrevious;
     
     /**
      * @param array $options
@@ -23,10 +23,10 @@ class ArrayProvider implements LanguageProviderInterface
     public function __construct(array $options = [])
     {
         $options = array_replace([
-            'fallback' => true,
+            'fallbackToPrevious' => true,
         ], $options);
         
-        $this->fallback = $options['fallback'];
+        $this->fallbackToPrevious = !!$options['fallbackToPrevious'];
     }
     
     /**
@@ -58,9 +58,8 @@ class ArrayProvider implements LanguageProviderInterface
         $sep = TranslatorInterface::SEP_LEVEL;
         $messages = $this->messages[$languageCode];
         $message = $messages[$messageCode] ?? null;
-        
         // search for a fallback message
-        if ($message == null && $this->fallback) {
+        if ($message == null && $this->fallbackToPrevious) {
             $segments = explode($sep, $messageCode);
             while (array_pop($segments)) {
                 $message = implode($sep, $segments);
