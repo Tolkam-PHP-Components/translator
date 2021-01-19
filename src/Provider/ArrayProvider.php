@@ -2,9 +2,9 @@
 
 namespace Tolkam\Translator\Provider;
 
-use Tolkam\Translator\Translator;
+use Tolkam\Translator\TranslatorInterface;
 
-class ArrayProvider implements MessageProviderInterface
+class ArrayProvider implements LanguageProviderInterface
 {
     /**
      * @var array
@@ -55,7 +55,7 @@ class ArrayProvider implements MessageProviderInterface
      */
     public function getMessage(string $languageCode, string $messageCode): ?string
     {
-        $sep = Translator::SEP_LEVEL;
+        $sep = TranslatorInterface::SEP_LEVEL;
         $messages = $this->messages[$languageCode];
         $message = $messages[$messageCode] ?? null;
         

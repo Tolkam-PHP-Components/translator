@@ -2,18 +2,18 @@
 
 namespace Tolkam\Translator;
 
-use Tolkam\Translator\Provider\MessageProviderInterface;
+use Tolkam\Translator\Provider\LanguageProviderInterface;
 use Tolkam\Utils\I18n;
 
 class Translator implements TranslatorInterface
 {
     /**
-     * @var MessageProviderInterface[]
+     * @var LanguageProviderInterface[]
      */
     protected array $providers = [];
     
     /**
-     * @var string
+     * @var string|null
      */
     protected ?string $language = null;
     
@@ -35,11 +35,11 @@ class Translator implements TranslatorInterface
     }
     
     /**
-     * @param MessageProviderInterface $provider
+     * @param LanguageProviderInterface $provider
      *
      * @return self
      */
-    public function addProvider(MessageProviderInterface $provider): self
+    public function addProvider(LanguageProviderInterface $provider): self
     {
         $this->providers[] = $provider;
         
@@ -91,7 +91,7 @@ class Translator implements TranslatorInterface
      *
      * @param string $lang
      *
-     * @return MessageProviderInterface[]
+     * @return LanguageProviderInterface[]
      * @throws TranslatorException
      */
     private function getProviders(string $lang): array

@@ -2,7 +2,7 @@
 
 namespace Tolkam\Translator\Provider;
 
-interface MessageProviderInterface
+interface LanguageProviderInterface
 {
     /**
      * Checks if language is available
