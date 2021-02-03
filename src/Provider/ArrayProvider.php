@@ -12,6 +12,12 @@ class ArrayProvider implements LanguageProviderInterface
     protected array $messages = [];
     
     /**
+     * Whether to throw on missing values
+     * @var bool
+     */
+    protected bool $strict;
+    
+    /**
      * Whether to fallback to previous nesting level segment
      * @var bool
      */
@@ -23,9 +29,11 @@ class ArrayProvider implements LanguageProviderInterface
     public function __construct(array $options = [])
     {
         $options = array_replace([
+            'strict' => false,
             'fallbackToPrevious' => true,
         ], $options);
         
+        $this->strict = !!$options['strict'];
         $this->fallbackToPrevious = !!$options['fallbackToPrevious'];
     }
     
@@ -59,13 +67,22 @@ class ArrayProvider implements LanguageProviderInterface
         $messages = $this->messages[$languageCode];
         $message = $messages[$messageCode] ?? null;
         
-        // search for a fallback message
-        if ($message === null && $this->fallbackToPrevious) {
-            $segments = explode($sep, $messageCode);
-            while (array_pop($segments)) {
-                $message = implode($sep, $segments);
-                if (($message = $messages[$message] ?? null) && is_string($message)) {
-                    break;
+        if ($message === null) {
+            if ($this->strict) {
+                throw new LanguageProviderException(sprintf(
+                    'No translation found at "%s" path',
+                    $messageCode
+                ));
+            }
+            
+            // search for a fallback message
+            if ($this->fallbackToPrevious) {
+                $segments = explode($sep, $messageCode);
+                while (array_pop($segments)) {
+                    $message = implode($sep, $segments);
+                    if (($message = $messages[$message] ?? null) && is_string($message)) {
+                        break;
+                    }
                 }
             }
         }
