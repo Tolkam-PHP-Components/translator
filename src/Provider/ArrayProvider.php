@@ -58,8 +58,9 @@ class ArrayProvider implements LanguageProviderInterface
         $sep = TranslatorInterface::SEP_LEVEL;
         $messages = $this->messages[$languageCode];
         $message = $messages[$messageCode] ?? null;
+        
         // search for a fallback message
-        if ($message == null && $this->fallbackToPrevious) {
+        if ($message === null && $this->fallbackToPrevious) {
             $segments = explode($sep, $messageCode);
             while (array_pop($segments)) {
                 $message = implode($sep, $segments);
