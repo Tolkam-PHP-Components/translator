@@ -153,7 +153,7 @@ class Translator implements TranslatorInterface
                 $replacement = sprintf($forms[$pluralIndex] ?? '', $count);
             }
             else {
-                $replacement = $args[$arg];
+                $replacement = $args[$arg] ?? $placeholder;
             }
             
             $map[$placeholder] = $replacement;
