@@ -18,7 +18,7 @@ interface TranslatorInterface
     public function useLanguage(string $lang): self;
     
     /**
-     * Gets message by it's code
+     * Gets message by its code
      *
      * @param string $code
      * @param array  $args

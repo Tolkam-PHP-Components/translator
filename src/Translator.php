@@ -5,21 +5,6 @@ namespace Tolkam\Translator;
 use Tolkam\Translator\Provider\LanguageProviderInterface;
 use Tolkam\Utils\I18n;
 
-/**
- * Usage example:
- *
- * <code>
- *      $t = new Translator;
- *      $t->addProvider(
- *          (new ArrayProvider)->setMessages('ru', [
- *              'my.code' => 'Сообщений: {count}',
- *              'my.code.plural' => 'У вас {count|%d сообщение,%d сообщения,%d сообщений,нет сообщений}',
- *          ])
- *      );
- *      $t->setLanguage('ru');
- *      $message = $t->get('my.code.plural', ['count' => 0]);
- * </code>
- */
 class Translator implements TranslatorInterface
 {
     /**

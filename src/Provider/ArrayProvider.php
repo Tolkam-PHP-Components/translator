@@ -18,7 +18,7 @@ class ArrayProvider implements LanguageProviderInterface
     protected bool $strict;
     
     /**
-     * Whether to fallback to previous nesting level segment
+     * Whether to fall back to previous nesting level segment
      * @var bool
      */
     protected bool $fallbackToPrevious;
